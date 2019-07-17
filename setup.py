@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='cream',
+    name='statisfactory',
     version='0.0.1',
     description='',
     long_description='',
