@@ -1,24 +1,22 @@
-from setuptools import (setup, find_packages)
-import os
+from setuptools import setup, find_packages
 
-
-def get_version():
-    g = {}
-    exec(open(os.path.join("statisfactory", "version.py")).read(), g)
-    return g["__version__"]
-
+extras_require = {
+    "develop": ["pytest", "pytest-runner", "flake8", "black", "bumpversion"]
+}
+extras_require["complete"] = sorted(set(sum(extras_require.values(), [])))
 
 setup(
-    name='statisfactory',
-    version=get_version(),
-    packages=find_packages(exclude=["tests"]),
-    description='',
-    long_description='',
-    url='https://giordonstark.com.com',
-    author='Giordon Stark',
-    author_email='gstark@cern.ch',
+    name="statisfactory",
+    version="0.0.1",
+    package_dir={"": "src"},
+    packages=find_packages(where="src", exclude=["tests"]),
+    description="",
+    long_description="",
+    url="https://giordonstark.com.com",
+    author="Giordon Stark",
+    author_email="gstark@cern.ch",
     license="BSD 3-clause",
-    setup_requires=["pytest-runner", "flake8"],
-    tests_require=["pytest"],
-    classifiers=['Development Status :: 1 - Planning'],
+    install_requires=[""],
+    classifiers=["Development Status :: 1 - Planning"],
+    extras_require=extras_require,
 )
