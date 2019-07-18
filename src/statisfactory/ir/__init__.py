@@ -1,3 +1,4 @@
-from .gaussian import gaussian
-from .poisson import poisson
-from .product import product
+from .distributions.gaussian import gaussian
+from .distributions.poisson import poisson
+
+from .operations.product import product

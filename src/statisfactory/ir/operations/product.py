@@ -1,4 +1,4 @@
-from .operation import operation
+from ..operation import operation
 
 
 class product(operation):

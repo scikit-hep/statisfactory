@@ -1,4 +1,4 @@
-from .distribution import distribution
+from ..distribution import distribution
 
 
 class gaussian(distribution):
