@@ -8,20 +8,20 @@ action "Install" {
   args = ["install"]
 }
 
-action "Run black" {
+action "Run flake8" {
   needs = "Install"
   uses = "abatilo/actions-poetry@3.7.3"
-  args = ["run", "python", "-m", "black", "--check", "."]
+  args = ["run", "python", "setup.py", "flake8"]
 }
 
-action "Run pylint" {
+action "Run tests" {
   needs = "Install"
   uses = "abatilo/actions-poetry@3.7.3"
-  args = ["run", "python", "-m", "pylint", "src"]
+  args = ["run", "python", "setup.py", "pytest"]
 }
 
 action "Master branch" {
-  needs = ["Run pylint", "Run black"]
+  needs = ["Run flake8", "Run tests"]
   uses = "actions/bin/filter@master"
   args = "branch master"
 }
