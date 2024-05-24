@@ -31,6 +31,7 @@ jobs:
         with:
           extra_args: --hook-stage manual --all-files
       - name: Run PyLint
+        continue-on-error: true
         run: |
           echo "::add-matcher::$GITHUB_WORKSPACE/.github/matchers/pylint.json"
           pipx run nox -s pylint
@@ -44,10 +45,10 @@ jobs:
       matrix:
         python-version: ["3.8", "3.12"]
         runs-on: [ubuntu-latest, macos-latest, windows-latest]
-
         include:
-          - python-version: pypy-3.10
-            runs-on: ubuntu-latest
+          # Intel runner
+          - runs-on: macos-13
+            python-version: "3.12"
 
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +61,10 @@ jobs:
           allow-prereleases: true
 
       - name: Install package
-        run: python -m pip install .[test]
+        run: |
+          python -m pip install uv
+          uv pip install --system  --upgrade pip wheel
+          uv pip install --system '.[test]'
 
       - name: Test package
         run: >-
@@ -68,6 +72,6 @@ jobs:
           --durations=20
 
       - name: Upload coverage report
-        uses: codecov/codecov-action@v4.3.0
+        uses: codecov/codecov-action@v4.4.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

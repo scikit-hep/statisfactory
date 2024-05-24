@@ -40,6 +40,10 @@ dependencies = []
 test = [
   "pytest >=6",
   "pytest-cov >=3",
+  "tbump>=6.7.0",
+  "pylint",
+  "build",
+  "twine",
 ]
 dev = [
   "pytest >=6",
@@ -65,9 +69,18 @@ version.source = "vcs"
 build.hooks.vcs.version-file = "src/statisfactory/_version.py"
 
 [tool.hatch.envs.default]
+installer = "uv"
 features = ["test"]
-scripts.test = "pytest {args}"
-
+scripts.test = "pytest -ra {args}"
+scripts.tag = "tbump {args}"
+scripts.lint = "pylint src"
+scripts.build = "python -m build"
+scripts.validate = "twine check dist/*"
+# https://github.com/linkchecker/linkchecker/issues/678
+scripts.build-check = [
+  "build",
+  "validate",
+]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
