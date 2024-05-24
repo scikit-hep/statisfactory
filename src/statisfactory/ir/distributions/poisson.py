@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from ..distribution import distribution
+from statisfactory.ir.distribution import distribution
 
 
 class poisson(distribution):
-    def __init__(self, x, mean):
+    def __init__(self, x: str, mean: str):
         obs = {"x": x}
         params = {"mean": mean}
         desc = {"expression": "(mean**x)*exp(mean)/factorial(x)"}

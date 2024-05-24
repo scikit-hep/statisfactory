@@ -1,12 +1,18 @@
 from __future__ import annotations
 
 import pprint as pp
+from typing import Any
 
-from .ir_base import ir_base
+from statisfactory.ir.ir_base import ir_base
 
 
 class distribution(ir_base):
-    def __init__(self, observables: dict, parameters: dict, description: dict):
+    def __init__(
+        self,
+        observables: dict[str, Any],
+        parameters: dict[str, Any],
+        description: dict[str, Any],
+    ):
         self._observables = observables
         self._parameters = parameters
         deps = {}
@@ -22,7 +28,7 @@ class distribution(ir_base):
             raise ValueError(msg)
         super().__init__(deps, description)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         out = str(type(self)) + " :\t\n"
         out += "\tobservables : " + pp.pformat(self._observables) + "\n"
         out += "\tparameters  : " + pp.pformat(self._parameters) + "\n"
