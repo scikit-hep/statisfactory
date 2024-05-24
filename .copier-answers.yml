@@ -1,0 +1,13 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 2024.04.23
+_src_path: gh:scientific-python/cookie
+backend: hatch
+email: kratsg@gmail.com
+full_name: Giordon Stark
+license: Apache
+org: scikit-hep
+project_name: statisfactory
+project_short_description:
+  Intermediate Representation of (Normalizable) Functions
+url: https://github.com/scikit-hep/statisfactory
+vcs: true
